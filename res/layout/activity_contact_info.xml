@@ -1,0 +1,80 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:layout_marginTop="20dp">
+
+    <TableRow
+        android:id="@+id/cellphoneTableRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" >        
+
+        <TextView
+            android:id="@+id/cellphoneLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cellphone"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/cellphoneTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="7874103650"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </TableRow>
+    
+    <TableRow
+        android:id="@+id/workphoneTableRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" >        
+
+        <TextView
+            android:id="@+id/workphoneLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Work Phone"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/workphoneTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </TableRow>
+    
+    <TableRow
+        android:id="@+id/emailTableRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" >        
+
+        <TextView
+            android:id="@+id/emailLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/emailTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="erick.caraballo@upr.edu"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </TableRow>
+    
+    <!-- TODO: Insert row for addresses -->
+
+</TableLayout>
