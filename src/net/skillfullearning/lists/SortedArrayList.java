@@ -101,8 +101,7 @@ public class SortedArrayList implements SortedList<Contact> {
 
 	@Override
 	public Contact last() {
-		// TODO Auto-generated method stub
-		return null;
+		return contacts.get(contacts.size()-1);		
 	}
 
 	@Override
@@ -112,8 +111,7 @@ public class SortedArrayList implements SortedList<Contact> {
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
+		contacts.clear();		
 	}
 
 	@Override

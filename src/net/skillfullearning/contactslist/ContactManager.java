@@ -5,42 +5,55 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
+ * Main Activity
+ * Handles all operations relating a Contact
  * @author cyb
  */
 public class ContactManager extends Activity {
-
-	  @Override
-	  protected void onCreate(Bundle savedInstanceState) {
-	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.activity_listview);
-
-	    final ListView listview = (ListView) findViewById(R.id.listView);
-	    String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-	        "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
+	
+	private ListView listview = null;
+	private ArrayList<String> list = null;
+	private MyArrayAdapter adapter = null;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_listview);
+		
+		// Init the list view
+		listview = (ListView) findViewById(R.id.listView);
+		
+		// Data
+		String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
+				"Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
 	        "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
 	        "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
 	        "Android", "iPhone", "WindowsMobile" };
 
-	    final ArrayList<String> list = new ArrayList<String>();
+		// Put data in a list (TODO: Get values from ContactStore)
+	    list = new ArrayList<String>();
 	    for (int i = 0; i < values.length; ++i) {
 	    	list.add(values[i]);
 	    }
-	    //final StableArrayAdapter adapter = new StableArrayAdapter(this,
-	    	//	android.R.layout.simple_list_item_1, list);
-	    final StableArrayAdapter adapter = new StableArrayAdapter(this, list);
+	    
+	    // Set custom array adapter
+	    adapter = new MyArrayAdapter(this, list);
 	    listview.setAdapter(adapter);
 	    
+	    // Attach click listener for items and define behavior
 	    listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 	    	
 	    	@Override
@@ -54,41 +67,56 @@ public class ContactManager extends Activity {
 	    		// Remove item from the list. TODO: Display Edit Activity instead of removing it
 	    		list.remove(item);
 	    		
-	    		Toast.makeText(getBaseContext(), "Deleting?", Toast.LENGTH_LONG).show();
-
 	    		// Let the adapter know of changes in underlying data structure
 	    		adapter.notifyDataSetChanged(); 
 	    	}
 	    });
+	    
+	    // Search bar
+	    final EditText searchContactEditText = (EditText) findViewById(R.id.searchContactEditText);
+	    searchContactEditText.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+				//ContactManager.this.adapter.getFilter().filter(cs);
+				// TODO: Implement custom filter method?
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+				// TODO Auto-generated method stub				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable arg0) {
+				// TODO Auto-generated method stub
+			}
+		});
 	  }
 	  
-	  private class StableArrayAdapter extends ArrayAdapter<String> {		
-		  
-		  private final Context context;
-		  //private final String[] values;
+	  private class MyArrayAdapter extends ArrayAdapter<String> {		
+
 		  private final ArrayList<String> values;
+		  private final LayoutInflater inflater;
 		  
-		  public StableArrayAdapter(Context context, ArrayList<String> values) {
-			  super(context, R.layout.row_layout, values);
-			  this.context = context;
+		  public MyArrayAdapter(Context context, ArrayList<String> values) {
+			  super(context, R.layout.item_layout, values);
 			  this.values = values;
+			  this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);			  
 		  }
 
 		  @Override
 		  public View getView(int position, View convertView, ViewGroup parent) {
+			 
+			  if (convertView == null) {
+				  convertView = inflater.inflate(R.layout.item_layout, parent, false);
+			  }
+			  
+			  ((TextView) convertView.findViewById(R.id.full_name)).setText(values.get(position));
+			  ((ImageView) convertView.findViewById(R.id.quickContactBadge)).setImageResource(R.drawable.ic_launcher);			  		    
+			  			  
+			  return convertView;
 		    
-			  LayoutInflater inflater = (LayoutInflater) context
-					  .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			  View rowView = inflater.inflate(R.layout.row_layout, parent, false);
-			  
-			  TextView textView = (TextView) rowView.findViewById(R.id.full_name);
-			  ImageView imageView = (ImageView) rowView.findViewById(R.id.quickContactBadge);
-			  textView.setText(values.get(position));		    
-			  imageView.setImageResource(R.drawable.ic_launcher);
-			  
-			  return rowView;
 		  }
-		  
-		  
 	  }	  
 } 

@@ -24,18 +24,19 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000e;
+        public static final int action_settings=0x7f08000f;
         public static final int cellphoneLabelTextView=0x7f080001;
         public static final int cellphoneTableRow=0x7f080000;
         public static final int cellphoneTextView=0x7f080002;
         public static final int emailLabelTextView=0x7f080007;
         public static final int emailTableRow=0x7f080006;
         public static final int emailTextView=0x7f080008;
-        public static final int full_name=0x7f08000c;
-        public static final int listView=0x7f080009;
-        public static final int number=0x7f08000d;
-        public static final int quickContactBadge=0x7f08000b;
-        public static final int rowlayout=0x7f08000a;
+        public static final int full_name=0x7f08000d;
+        public static final int listView=0x7f08000a;
+        public static final int number=0x7f08000e;
+        public static final int quickContactBadge=0x7f08000c;
+        public static final int rowlayout=0x7f08000b;
+        public static final int searchContactEditText=0x7f080009;
         public static final int workphoneLabelTextView=0x7f080004;
         public static final int workphoneTableRow=0x7f080003;
         public static final int workphoneTextView=0x7f080005;
@@ -44,7 +45,7 @@ public final class R {
         public static final int activity_contact_info=0x7f030000;
         public static final int activity_listview=0x7f030001;
         public static final int activity_main=0x7f030002;
-        public static final int row_layout=0x7f030003;
+        public static final int item_layout=0x7f030003;
     }
     public static final class menu {
         public static final int contact_info=0x7f070000;
